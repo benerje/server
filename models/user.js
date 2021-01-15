@@ -12,6 +12,18 @@ const userSchema = new mongoose.Schema({
     password:{
         type:String,
         required:true
+    },
+    employeeid:{
+        type:String,
+        required:true
+    },
+    role:{
+        type:String,
+        required:true
+    },
+    documents:{
+        type:String,
+        required:true
     }
 
 })

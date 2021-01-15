@@ -7,11 +7,16 @@ const {MONGOURI} = require('./keys')
 //l8THUS1u1AQnGahF
 
 require('./models/user')
+require('./models/userDetails')
 
 app.use(express.json())
 
 app.use(require('./router/auth'))
+app.use(require('./router/time'))
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.connect(MONGOURI,{
     useNewUrlParser:true,

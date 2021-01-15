@@ -11,9 +11,9 @@ router.get('/home',requireLogin,(req,res)=>{
     res.send("hello user")
 })
 
-router.post('/signup',(req,res)=>{
-    const {name,email,password,confirm_password} = req.body
-    if(!email || !password ||!name ||!confirm_password){
+router.post('/createemployee',(req,res)=>{
+    const {employeeid,name,email,password,confirm_password,role,documents} = req.body
+    if(!employeeid || !email || !password ||!name ||!confirm_password || !role || !documents){
         return res.status(422).json({error:"Please add all the fields"})
     }
     if(password!==confirm_password){
@@ -28,7 +28,10 @@ router.post('/signup',(req,res)=>{
             const user = new User({
                 email,
                 password:hashedpassword,
-                name
+                name,
+                employeeid,
+                role,
+                documents
             })
             user.save()
             .then(user=>{
