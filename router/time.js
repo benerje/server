@@ -1,13 +1,14 @@
 const express = require('express')
-
 const router = express.Router()
-
 const mongoose = require('mongoose')
-
 const requireLogin = require('../middleware/requireLogin')
-
 const TimeSheet = mongoose.model("TimeSheet")
 const User = mongoose.model("User")
+
+router.get('/mydetails',requireLogin,(req,res)=>{
+     req.user.password=undefined
+     res.json({details:req.user})
+})
 
 router.post('/timesheet',requireLogin,(req,res)=>{
     const {startTime,endTime,date,description,notes} = req.body

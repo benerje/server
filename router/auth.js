@@ -7,13 +7,13 @@ const jwt = require("jsonwebtoken")
 const {JWT_SECRET} = require('../keys')
 const requireLogin = require("../middleware/requireLogin")
 
-router.get('/home',requireLogin,(req,res)=>{
-    res.send("hello user")
-})
+// router.get('/home',requireLogin,(req,res)=>{
+//     res.send("hello user")
+// })
 
 router.post('/createemployee',(req,res)=>{
     const {employeeid,name,email,password,confirm_password,role,documents} = req.body
-    if(!employeeid || !email || !password ||!name ||!confirm_password || !role || !documents){
+    if(!employeeid || !email || !password ||!name ||!confirm_password || !role){
         return res.status(422).json({error:"Please add all the fields"})
     }
     if(password!==confirm_password){
