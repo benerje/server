@@ -11,6 +11,10 @@ require('./models/userDetails')
 
 app.use(express.json())
 
+var cors = require('cors')
+
+app.use(cors())
+
 app.use(require('./router/auth'))
 app.use(require('./router/time'))
 
